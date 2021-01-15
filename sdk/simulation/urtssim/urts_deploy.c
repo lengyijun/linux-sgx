@@ -66,6 +66,8 @@ void sgx_ecall_switchless(){};
 void sgx_set_switchless_itf(){};
 void sgx_oc_cpuidex(){};
 void sgx_oc_mlock(){};
+void sgx_oc_munlock(){};
+void sgx_oc_mincore(){};
 void sgx_ocall(){};
 void sgx_thread_set_multiple_untrusted_events_ocall(){};
 void sgx_thread_set_untrusted_event_ocall(){};

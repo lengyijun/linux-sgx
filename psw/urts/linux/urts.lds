@@ -19,6 +19,8 @@
         sgx_set_switchless_itf;
         sgx_get_metadata;
         sgx_oc_mlock;
+        sgx_oc_munlock;
+        sgx_oc_mincore;
     local:
         *;
 };

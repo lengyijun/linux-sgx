@@ -41,5 +41,22 @@ extern "C" int32_t sgx_oc_mlock(unsigned long addr,unsigned long size){
     struct sgx_mlock_param sml;
     sml.start_addr=addr;
     sml.size=size;
-    return ioctl( m_hdevice,SGX_IOC_ENCLAVE_PAGE_LOCK,&sml);
+    return ioctl( m_hdevice,SGX_IOC_ENCLAVE_MLOCK,&sml);
+}
+
+extern "C" int32_t sgx_oc_munlock(unsigned long addr,unsigned long size){
+    int m_hdevice=-1;
+    open_se_device(SGX_DRIVER_DCAP , &m_hdevice );
+
+    struct sgx_mlock_param sml;
+    sml.start_addr=addr;
+    sml.size=size;
+    return ioctl( m_hdevice,SGX_IOC_ENCLAVE_MUNLOCK,&sml);
+}
+
+extern "C" int32_t sgx_oc_mincore(unsigned long addr){
+    int m_hdevice=-1;
+    open_se_device(SGX_DRIVER_DCAP , &m_hdevice );
+
+    return ioctl( m_hdevice,SGX_IOC_ENCLAVE_MINCORE,&addr);
 }
