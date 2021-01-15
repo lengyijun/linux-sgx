@@ -97,6 +97,7 @@ OBJ2 := urts.o               \
         prd_css_util.o       \
         urts_emodpr.o        \
         urts_trim.o          \
+        mman.o               \
         edmm_utility.o
 
 OBJ3 := enter_enclave.o \

@@ -444,3 +444,4 @@ DeliveryName	InstallName	FileCheckSum	FileFeature	FileOwner
 <deliverydir>/sdk/tlibcxx/include/valarray	<installdir>/package/include/libcxx/valarray	0	main	STP
 <deliverydir>/sdk/tlibcxx/include/vector	<installdir>/package/include/libcxx/vector	0	main	STP
 <deliverydir>/common/buildenv.mk	<installdir>/package/buildenv.mk	0	main	STP
+<deliverydir>/common/inc/sgx_mman.edl	<installdir>/package/include/./sgx_mman.edl	0	main	STP

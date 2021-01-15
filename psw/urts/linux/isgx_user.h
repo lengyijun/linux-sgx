@@ -118,6 +118,9 @@ enum sgx_page_flags {
 	_IOW(SGX_MAGIC, 0x0c, struct sgx_range)
 #define SGX_IOC_ENCLAVE_PAGE_REMOVE \
 	_IOW(SGX_MAGIC, 0x0d, unsigned long)
+#define SGX_IOC_ENCLAVE_PAGE_LOCK \
+       _IOW(SGX_MAGIC, 0x0e, sgx_page_lock_param)
+
 
 //Note: SGX_IOC_ENCLAVE_CREATE is the same for in-kernel except that it returns a file handle for in-kernel
 #define SGX_IOC_ENCLAVE_ADD_PAGES_IN_KERNEL \
@@ -282,5 +285,10 @@ struct sgx_modification_param {
 	struct sgx_range range;
 	unsigned long flags;
 };
+
+struct sgx_page_lock_param {
+       __u64   addr;  // start address
+       __u64   size;  // end=start+size
+} __attribute__((__packed__));
 
 #endif /* _UAPI_ASM_X86_SGX_H */
