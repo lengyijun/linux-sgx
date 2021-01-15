@@ -32,6 +32,6 @@
 enclave {
     from "sgx_tstdc.edl" import *;
     untrusted {
-		uint32_t sgx_oc_mlock( uint64_t addr,uint64_t size);
+      int32_t sgx_oc_mlock( uint64_t addr,uint64_t size);
     };
 };

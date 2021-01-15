@@ -34,7 +34,7 @@
 #include <stdint.h>
 #include <sys/ioctl.h>
 
-extern "C" uint32_t sgx_oc_mlock(unsigned long addr,unsigned long size){
+extern "C" int32_t sgx_oc_mlock(unsigned long addr,unsigned long size){
     int m_hdevice=-1;
     open_se_device(SGX_DRIVER_DCAP , &m_hdevice );
 
