@@ -38,8 +38,8 @@ extern "C" uint32_t sgx_oc_mlock(unsigned long addr,unsigned long size){
     int m_hdevice=-1;
     open_se_device(SGX_DRIVER_DCAP , &m_hdevice );
 
-    struct sgx_page_lock_param spl;
-    spl.addr=addr;
-    spl.size=size;
-    return ioctl( m_hdevice,SGX_IOC_ENCLAVE_PAGE_LOCK,&spl);
+    struct sgx_mlock_param sml;
+    sml.start_addr=addr;
+    sml.size=size;
+    return ioctl( m_hdevice,SGX_IOC_ENCLAVE_PAGE_LOCK,&sml);
 }
