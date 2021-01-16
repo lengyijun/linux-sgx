@@ -46,7 +46,7 @@ void ecall_malloc_free(void)
     assert(ptr != NULL);
     memset(ptr, 0x0, 100);
     unsigned long x=(unsigned long)ptr;
-    long res=0;
+    int res=0;
     sgx_oc_mlock(&res,x,10);
     free(ptr);
 }
