@@ -36,7 +36,7 @@
 
 extern "C" int32_t sgx_oc_mlock(unsigned long addr,unsigned long size){
     int m_hdevice=-1;
-    open_se_device(SGX_DRIVER_DCAP , &m_hdevice );
+    if (false==open_se_device( SGX_DRIVER_OUT_OF_TREE, &m_hdevice )){ return -7;};
 
     struct sgx_mlock_param sml;
     sml.start_addr=addr;
@@ -46,7 +46,7 @@ extern "C" int32_t sgx_oc_mlock(unsigned long addr,unsigned long size){
 
 extern "C" int32_t sgx_oc_munlock(unsigned long addr,unsigned long size){
     int m_hdevice=-1;
-    open_se_device(SGX_DRIVER_DCAP , &m_hdevice );
+    if (false==open_se_device( SGX_DRIVER_OUT_OF_TREE, &m_hdevice )){ return -7;};
 
     struct sgx_mlock_param sml;
     sml.start_addr=addr;
@@ -56,7 +56,7 @@ extern "C" int32_t sgx_oc_munlock(unsigned long addr,unsigned long size){
 
 extern "C" int32_t sgx_oc_mincore(unsigned long addr){
     int m_hdevice=-1;
-    open_se_device(SGX_DRIVER_DCAP , &m_hdevice );
+    if (false==open_se_device( SGX_DRIVER_OUT_OF_TREE, &m_hdevice )){ return -7;};
 
     return ioctl( m_hdevice,SGX_IOC_ENCLAVE_MINCORE,&addr);
 }
