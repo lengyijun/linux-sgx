@@ -37,19 +37,28 @@
 #include "../Enclave.h"
 #include "Enclave_t.h"
 
+#define PAGE_SHIFT      12
+#ifdef __ASSEMBLY__
+#define PAGE_SIZE       (1 << PAGE_SHIFT)
+#else
+#define PAGE_SIZE       (1UL << PAGE_SHIFT)
+#endif
+#define PAGE_MASK       (~(PAGE_SIZE-1))
+
 /* ecall_malloc_free:
  *   Uses malloc/free to allocate/free trusted memory.
  */
 void ecall_malloc_free(void)
 {
-  //ocall_print_int(-123);
     void *ptr = malloc(100);
     assert(ptr != NULL);
     memset(ptr, 0x0, 100);
-    unsigned long x=(unsigned long)ptr;
+    int y=12;
+    unsigned long x=(unsigned long)&y;
+    x&=(~(PAGE_SIZE-1));
     int res=0;
     sgx_oc_mlock(&res,x,12);
-  ocall_print_int(res);
+    ocall_print_int(res);
     free(ptr);
 }
 
