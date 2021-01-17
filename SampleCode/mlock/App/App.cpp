@@ -176,6 +176,15 @@ void ocall_print_string(const char *str)
     printf("%s", str);
 }
 
+/* OCall functions */
+void ocall_print_int(int str)
+{
+    /* Proxy/Bridge will check the length and null-terminate 
+     * the input string to prevent buffer overflow. 
+     */
+    printf("%d", str);
+}
+
 
 /* Application entry */
 int SGX_CDECL main(int argc, char *argv[])
@@ -193,8 +202,8 @@ int SGX_CDECL main(int argc, char *argv[])
  
     /* Utilize trusted libraries */
     ecall_libc_functions();
-
-    while(1){}
+    // ecall_libcxx_functions();
+    // ecall_thread_functions();
 
     /* Destroy the enclave */
     sgx_destroy_enclave(global_eid);

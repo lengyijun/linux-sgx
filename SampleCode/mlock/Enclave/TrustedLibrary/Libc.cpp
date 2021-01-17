@@ -42,13 +42,15 @@
  */
 void ecall_malloc_free(void)
 {
-    void *ptr = malloc(5*1024);
+  //ocall_print_int(-123);
+    void *ptr = malloc(100);
     assert(ptr != NULL);
     memset(ptr, 0x0, 100);
     unsigned long x=(unsigned long)ptr;
     int res=0;
-    sgx_oc_mlock(&res,x,10);
-    //free(ptr);
+    sgx_oc_mlock(&res,x,12);
+  ocall_print_int(res);
+    free(ptr);
 }
 
 /* ecall_sgx_cpuid:
