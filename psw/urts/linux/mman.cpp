@@ -34,24 +34,24 @@
 #include <stdint.h>
 #include <sys/ioctl.h>
 
-extern "C" int32_t sgx_oc_mlock(unsigned long addr,unsigned long size){
+extern "C" int32_t sgx_oc_mlock(unsigned long addr,unsigned int nr_pages){
     int m_hdevice=-1;
     if (false==open_se_device( SGX_DRIVER_OUT_OF_TREE, &m_hdevice )){ return -7;};
 
-    struct sgx_mlock_param sml;
-    sml.start_addr=addr;
-    sml.size=size;
-    return ioctl( m_hdevice,SGX_IOC_ENCLAVE_MLOCK,&sml);
+    struct sgx_range rg;
+    rg.start_addr=addr;
+    rg.nr_pages=nr_pages;
+    return ioctl( m_hdevice,SGX_IOC_ENCLAVE_MLOCK,&rg);
 }
 
-extern "C" int32_t sgx_oc_munlock(unsigned long addr,unsigned long size){
+extern "C" int32_t sgx_oc_munlock(unsigned long addr,unsigned int nr_pages){
     int m_hdevice=-1;
     if (false==open_se_device( SGX_DRIVER_OUT_OF_TREE, &m_hdevice )){ return -7;};
 
-    struct sgx_mlock_param sml;
-    sml.start_addr=addr;
-    sml.size=size;
-    return ioctl( m_hdevice,SGX_IOC_ENCLAVE_MUNLOCK,&sml);
+    struct sgx_range rg;
+    rg.start_addr=addr;
+    rg.nr_pages=nr_pages;
+    return ioctl( m_hdevice,SGX_IOC_ENCLAVE_MUNLOCK,&rg);
 }
 
 extern "C" int32_t sgx_oc_mincore(unsigned long addr){

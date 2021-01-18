@@ -55,7 +55,7 @@ void ecall_malloc_free(void)
     memset(ptr, 0x0, 100);
     int y=12;
     unsigned long x=(unsigned long)&y;
-    x&=(~(PAGE_SIZE-1));
+    x&=PAGE_MASK;
     int res=0;
     sgx_oc_mlock(&res,x,12);
     ocall_print_int(res);

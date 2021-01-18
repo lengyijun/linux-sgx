@@ -119,9 +119,9 @@ enum sgx_page_flags {
 #define SGX_IOC_ENCLAVE_PAGE_REMOVE \
 	_IOW(SGX_MAGIC, 0x0d, unsigned long)
 #define SGX_IOC_ENCLAVE_MLOCK \
-       _IOW(SGX_MAGIC, 0x0e, sgx_mlock_param)
+       _IOW(SGX_MAGIC, 0x0e, sgx_range)
 #define SGX_IOC_ENCLAVE_MUNLOCK \
-       _IOW(SGX_MAGIC, 0x10, sgx_munlock_param)
+       _IOW(SGX_MAGIC, 0x10, sgx_range)
 #define SGX_IOC_ENCLAVE_MINCORE \
        _IOW(SGX_MAGIC, 0x11, unsigned long)
 
@@ -289,15 +289,5 @@ struct sgx_modification_param {
 	struct sgx_range range;
 	unsigned long flags;
 };
-
-struct sgx_mlock_param {
-  __u64   start_addr;  // start address
-  __u64   size;  // end=start+size
-} __attribute__((__packed__));
-
-struct sgx_munlock_param {
-  __u64   start_addr;  // start address
-  __u64   size;  // end=start+size
-} __attribute__((__packed__));
 
 #endif /* _UAPI_ASM_X86_SGX_H */
