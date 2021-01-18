@@ -48,16 +48,28 @@
 /* ecall_malloc_free:
  *   Uses malloc/free to allocate/free trusted memory.
  */
+
+int mlock(unsigned long start_address,unsigned long size){
+    int res=0;
+    unsigned long end_address=start_address+size;
+    unsigned int nr_pages=1;
+
+    start_address&=PAGE_MASK;
+    end_address&=PAGE_MASK;
+
+    nr_pages=( (end_address-start_address) >> PAGE_SHIFT) +1;
+
+    sgx_oc_mlock(&res,start_address,nr_pages);
+    return res;
+}
+
 void ecall_malloc_free(void)
 {
     void *ptr = malloc(100);
     assert(ptr != NULL);
     memset(ptr, 0x0, 100);
-    int y=12;
-    unsigned long x=(unsigned long)&y;
-    x&=PAGE_MASK;
-    int res=0;
-    sgx_oc_mlock(&res,x,12);
+    unsigned long start_address=(unsigned long)ptr;
+    int res=mlock(start_address,10);
     ocall_print_int(res);
     free(ptr);
 }
