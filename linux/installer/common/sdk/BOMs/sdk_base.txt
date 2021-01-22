@@ -3,6 +3,7 @@ DeliveryName	InstallName	FileCheckSum	FileFeature	FileOwner
 <deliverydir>/common/inc/sgx_attributes.h	<installdir>/package/include/./sgx_attributes.h	0	main	STP
 <deliverydir>/common/inc/sgx_capable.h	<installdir>/package/include/./sgx_capable.h	0	main	STP
 <deliverydir>/common/inc/sgx_cpuid.h	<installdir>/package/include/./sgx_cpuid.h	0	main	STP
+<deliverydir>/common/inc/sgx_mman.h	<installdir>/package/include/./sgx_mman.h	0	main	STP
 <deliverydir>/common/inc/sgx_defs.h	<installdir>/package/include/./sgx_defs.h	0	main	STP
 <deliverydir>/common/inc/sgx_dh.h	<installdir>/package/include/./sgx_dh.h	0	main	STP
 <deliverydir>/common/inc/sgx_ecp_types.h	<installdir>/package/include/./sgx_ecp_types.h	0	main	STP
